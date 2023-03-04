@@ -24,14 +24,19 @@ const io = require('socket.io')(server, {
   maxHttpBufferSize: 1e8
 })
 const HallCall = io.of('hallcall');
+const MainView = io.of('mainview')
 HallCall.on('connection', (socket) => {
   console.log('휴대폰 접속성공')
   socket.on('disconnect', () => {
     console.log('휴대폰 접속 끊어짐', socket.id)
   })
-  socket.on('sendcall', (data) => { console.log(data) })
+  socket.on('sendcall', (data) => { 
+    io.of('mainview').emit('hallcalling', '호출호출')  
+  })
 })
-
+MainView.on('connection', (socket) => {
+  console.log('홈페이지 접속 성공', socket.id)
+})
 /**
  * Listen on provided port, on all network interfaces.
  */

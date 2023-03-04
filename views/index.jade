@@ -1,5 +1,49 @@
-extends layout
+#wrap
+  #table1.table 1
+  #table2.table 2
+  #table3.table 3
+  #table4.table 4
+  #table5.table 5
+  .table.counter
+  .table6.table 6
+  .table.counter
+  .table.counter
 
-block content
-  h1= title
-  p Welcome to #{title}
+script(src='/socket.io/socket.io.js')
+script.
+  const socket = io.connect('http://localhost:3000/mainview')
+  var table1 = document.getElementById('table1')
+  socket.on('hallcalling', (data) => {
+    console.log(data)
+    table1.style.backgroundColor = 'red'
+    setTimeout( () => {
+      table1.style.backgroundColor = 'white'
+    }, 3000)
+  })
+
+
+style.
+  body {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  #wrap {
+    width: 80%;
+    height: 70%;
+  }
+  .table {
+    float: left;
+    width: 31%;
+    height: 31%;
+    border: 1px solid red;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 5px;
+    font-size: 80px;
+  }
+  .table.counter {
+    border-color: rgba(112, 0, 0, 0)
+  }
