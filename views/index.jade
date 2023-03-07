@@ -5,7 +5,7 @@
   #table4.table 4
   #table5.table 5
   .table.counter
-  .table6.table 6
+  #table6.table 6
   .table.counter
   #start.table.counter 🔇
 
@@ -13,7 +13,10 @@ audio#callsound(src='sounds/doorbell.mp3')
 script(src='/socket.io/socket.io.js')
 script.
   const socket = io.connect('http://localhost:3000/mainview')
-  var table1 = document.getElementById('table1')
+  //- var table1 = document.getElementById('table1')
+  //- var table2 = document.getElementById('table2')
+  //- var table3 = document.getElementById('table3')
+  //- var table4 = document.getElementById('table4')
   var callsound = document.getElementById('callsound')
   var start = document.getElementById('start')
   start.addEventListener('click', () => {
@@ -23,10 +26,10 @@ script.
     callsound.play()
   })
   const tableNum = {
-    table1: '::ffff:172.30.1.33'
-    table2: '::ffff:172.30.1.17'
-    table3: '::ffff:172.30.1.70'
-    table4: '::ffff:172.30.1.36'
+    table1: '::ffff:172.30.1.18',
+    table2: '::ffff:172.30.1.17',
+    table3: '::ffff:172.30.1.70',
+    table4: '::ffff:172.30.1.18',
   }
   socket.on('hallcalling', (data) => {
     console.log(data)
